@@ -10,10 +10,20 @@ A modern, fast, and intuitive SQLite GUI built with Electron, React, and Vite. D
 - **Dark Mode**: Beautiful, modern UI with dark mode support.
 - **Lightweight**: Optimized footprint for quick startup and low resource usage.
 
-## Prerequisites
+## Installation
 
-- [Node.js](https://nodejs.org/) (v16 or higher recommended)
-- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+### For Users
+Most users will want to download the pre-built installer:
+1. Go to the [Releases](https://github.com/Abhay-Maheshwari/SQL-Lite-GUI/releases) page on GitHub.
+2. Download the latest `SQLite.Studio.Setup.x.x.x.exe` file.
+3. Run the installer. It will:
+   - Install the application to your local machine.
+   - Create a **Desktop Shortcut** for easy access.
+   - Add a shortcut to your **Start Menu**.
+
+### For Developers (Prerequisites)
+- [Node.js](https://nodejs.org/) (v20 or higher recommended)
+- [npm](https://www.npmjs.com/)
 
 ## Getting Started
 
