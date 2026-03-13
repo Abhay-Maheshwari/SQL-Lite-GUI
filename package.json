@@ -9,7 +9,7 @@
     "build:electron": "tsc -p electron/tsconfig.json",
     "build:renderer": "vite build",
     "build": "npm run build:electron && npm run build:renderer",
-    "dist": "npm run build && electron-builder",
+    "dist": "npm run build && electron-builder --publish always",
     "package": "npm run build && electron-packager . \"SQLite Studio\" --platform=win32 --arch=x64 --out=dist-out --overwrite --icon=src/assets/logo.png --ignore=\"src|electron|tsconfig.json|vite.config.ts|postcss.config.js|tailwind.config.cjs|public|scripts|.gitignore|package-lock.json\"",
     "postinstall": "electron-builder install-app-deps",
     "start": "electron ."
@@ -54,7 +54,6 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@electron/rebuild": "^4.0.3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/better-sqlite3": "^7.6.13",
     "@types/react": "^19.2.14",
