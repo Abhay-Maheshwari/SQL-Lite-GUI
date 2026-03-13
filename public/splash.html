@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background: #020617;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            border-radius: 20px;
+        }
+        .container {
+            text-align: center;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 250px;
+        }
+        .loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+        }
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #3b82f6;
+            animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        .loader-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(10px);
+            animation: pulse 1s ease-in-out infinite alternate;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            from { opacity: 0.1; transform: scale(0.9); }
+            to { opacity: 0.3; transform: scale(1.1); }
+        }
+        .title {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        .subtitle {
+            color: #64748b;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .progress-bar {
+            width: 120px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 20px auto 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-value {
+            width: 40%;
+            height: 100%;
+            background: #3b82f6;
+            border-radius: 10px;
+            animation: move 2s ease-in-out infinite;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+        @keyframes move {
+            0% { transform: translateX(-100%); width: 30%; }
+            50% { transform: translateX(100%); width: 60%; }
+            100% { transform: translateX(250%); width: 30%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loader">
+            <div class="loader-glow"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <div class="title">SQLite Studio</div>
+        <div class="subtitle">Loading Experience</div>
+        <div class="progress-bar">
+            <div class="progress-value"></div>
+        </div>
+    </div>
+</body>
+</html>
