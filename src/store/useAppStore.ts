@@ -19,7 +19,7 @@ interface AppState {
   tableSchema: { [table: string]: any[] };
 
   // Phase 2 state
-  view: 'table' | 'query' | 'home';
+  view: 'table' | 'query' | 'home' | 'diagram';
   queryText: string;
   lastQueryResult: any | null;
   queryHistory: { id: string; sql: string; timestamp: number; success: boolean }[];
@@ -38,7 +38,7 @@ interface AppState {
   updateCell: (table: string, column: string, value: any, row: any) => Promise<boolean>;
 
   // Phase 2 actions
-  setView: (view: 'table' | 'query' | 'home') => void;
+  setView: (view: 'table' | 'query' | 'home' | 'diagram') => void;
   setQueryText: (text: string) => void;
   runCurrentQuery: () => Promise<void>;
   clearQueryResult: () => void;

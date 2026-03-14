@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, Menu } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import { openDatabase, getDatabase, getDbPath } from './db';
@@ -6,6 +6,67 @@ import store, { addRecentFile, getRecentFiles } from './store';
 
 let mainWindow: BrowserWindow | null = null;
 let splashWindow: BrowserWindow | null = null;
+
+const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
+
+const createMenu = () => {
+  const template: any[] = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open Database',
+          accelerator: 'CmdOrCtrl+O',
+          click: async () => {
+             // We can trigger the IPC handler logic here or just rely on the UI button
+             // For now, let's keep it simple as the UI handles it well
+          }
+        },
+        { type: 'separator' },
+        { role: 'quit' }
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [
+        { role: 'undo' },
+        { role: 'redo' },
+        { type: 'separator' },
+        { role: 'cut' },
+        { role: 'copy' },
+        { role: 'paste' },
+        { role: 'selectAll' }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forcereload' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
+    },
+    {
+      label: 'Window',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'close' }
+      ]
+    }
+  ];
+
+  if (isDev) {
+    template[2].submenu.push({ type: 'separator' }, { role: 'toggledevtools' });
+  }
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+};
 
 const createSplashWindow = () => {
   splashWindow = new BrowserWindow({
@@ -34,14 +95,18 @@ const createSplashWindow = () => {
 };
 
 const createWindow = () => {
+  createMenu();
   createSplashWindow();
 
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
     show: false,
+    icon: path.join(__dirname, '..', '..', 'src', 'assets', 'logo.png'),
+    autoHideMenuBar: !isDev,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      devTools: isDev,
     },
   });
 
