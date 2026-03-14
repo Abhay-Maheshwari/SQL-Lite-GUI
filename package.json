@@ -1,6 +1,6 @@
 {
   "name": "sql-lite-gui",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Electron + React + SQLite GUI (Phase 1 scaffold)",
   "main": "dist/electron/main.js",
   "scripts": {
